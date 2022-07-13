@@ -1,0 +1,26 @@
+/** landing page styling  */
+.landing {
+
+}
+.landing .body {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap-reverse;
+}
+.landing img {
+    width: 40vw;
+    height: 40vh;
+    object-fit: contain;
+}
+.landing .introTxt {
+    display: grid;
+    grid-auto-flow: row;
+}
+.landing .introTxt div {
+    width: 80%;
+    left: 10%;
+    display: flex;
+    justify-content: space-around;
+}

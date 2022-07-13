@@ -1,0 +1,45 @@
+@media only screen and (max-width: 600px){
+    /** navigation styling */
+    .navBar button{
+        display: none;
+    }
+    .navBar .top div {
+        width: 4vmax !important;
+    }
+    .navBar h2 {
+        font-size: 5vmax !important;
+    }
+    #burgher {
+        display: block !important;
+        color: black;
+        font-size: 4vmax;
+        height: 4vmax;
+    }
+
+    /** landing page section 1 styling */
+    .landing img {
+        width: 80vw !important;
+    }
+    .landing .body .introTxt {
+        width: 100%;
+    }
+    .landing .body .introTxt ul {
+        width: 90%;
+        left: 10%;
+    }
+    .landing .body .loginSignup {
+        width: 90%;
+        left: 5%;
+        margin-top: 2%;
+    }
+
+    /** login/signup form */
+    .loginForm {
+        width: 80vw !important;
+        margin-left: 10vw !important;
+        margin-top: 25% !important;
+    }
+    input {
+        width: 90% !important;
+    }
+}
