@@ -3,6 +3,7 @@ import './phone.css'
 import { Route, Routes } from 'react-router-dom';
 import Landing from './Pages/Landing';
 import LoginSignUp from './Pages/LoginSignUp'
+import Home from './Pages/Home';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Landing />} />
         <Route exact path='/loginsignup' element={<LoginSignUp />} />
+        <Route exact path='/home' element={<Home />} />
       </Routes>
     </div>
   );

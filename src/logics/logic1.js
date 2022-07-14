@@ -4,7 +4,7 @@ const signupUrl = "http://localhost:4000/api/createacc";
 const loginUrl = "http://localhost:4000/api/loginacc";
 
 const signupFunc = async(signUpData) =>{
-    var response;
+    let response;
     await axios.post(signupUrl, signUpData)
     .then((res)=>{
         response = res.data;
@@ -17,14 +17,15 @@ const signupFunc = async(signUpData) =>{
 
 
 const loginFunc = async(loginData) =>{
-    console.log('uhhh')
+    let response;
     await axios.post(loginUrl, loginData)
     .then((res)=>{
-        return res.data;
+        response = res.data;
     })
     .catch((err)=>{
-        return err;
+        response = err;
     })
+    return response;
 }
 
 
