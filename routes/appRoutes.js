@@ -21,7 +21,7 @@ routes.post('/createacc', async(req, res)=>{
         //proceed to save
         // check user doesn't exist
         const exists = await functions.checkUser(req.body)
-        if(exists){
+        if(exists.status){
             const raiserKey = (await new fundraisers({}).save())._id;
             const invitedKey = (await new invitedRaisers({}).save())._id;
             
@@ -45,7 +45,25 @@ routes.post('/createacc', async(req, res)=>{
     }
 })
 
-
+routes.post('/loginacc', async(req, res)=>{
+    // check if user exist
+    const exists = await functions.checkUser(req.body);
+    if (exists.status){
+        // means user doesn't exist as null returns true
+        res.send("Check Credentials or Create Account");
+    }else{
+        // check if passwords match
+        try {
+            if (req.body.userName === exists.userData.userName && req.body.password === exists.userData.password){
+                console.log("success");
+            } else {
+                console.log("Check Username or Password");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+})
 
 
 module.exports = routes

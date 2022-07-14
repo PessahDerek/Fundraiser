@@ -5,9 +5,9 @@ const userModel = require('../models/userModel');
 const checkUser = async(data) =>{
     const resp = await userModel.findOne({contact: data.contact});
     if (resp === null){
-        return true;
+        return {status: true, userData: null};
     }else{
-        return false;
+        return {status: false, userData: resp};
     }
 }
 
