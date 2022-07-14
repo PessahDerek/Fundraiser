@@ -1,22 +1,18 @@
 import './comp.css'
 import React, { useEffect, useState } from 'react'
-import {useLocation} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {loginFunc, signupFunc, modifInp} from '../logics/logic1';
 import './comp.css';
 
 const LoginForm = (props) => {
-    const [pholder, setPholder] = useState("username/phone/email");
+    const navigate = useNavigate();
+    const [message, setMessage] = useState("Login");
     const [login, setLogin] = useState(true);
     const location = useLocation();
     const [loginCred, setLoginCred] = useState({contact: "", userName: "", password: ""});
     const [confirmPasswd, setConf] = useState("");
 
     useEffect(()=>{
-        if(location.state.login){
-            setPholder("Username");
-        }else{
-            setPholder("Phone/email");
-        }    
         setLogin(location.state.login);
     }, [location.state.login])
 
@@ -24,7 +20,13 @@ const LoginForm = (props) => {
             e.preventDefault();
             if (login){
                 var resp = await loginFunc(loginCred);
-                alert(resp);
+                // login to home if successful
+                if(resp.message === "Successful"){
+                    localStorage.setItem("userId", resp.userId);
+                    navigate("/home", {state: {userId: resp.userId}});
+                }else{
+                    setMessage("Check Your Credentials")
+                }
             }else{
                 if (confirmPasswd === loginCred.password){
                     var resp = await signupFunc(loginCred);
@@ -35,11 +37,11 @@ const LoginForm = (props) => {
     }
   return (
     <form className='loginForm' onSubmit={accessAcc}>
-        <label>{(!login && <p>Sign Up</p>) || (login && <p>Login</p>)}</label>
+        <label>{(!login && <p>Sign Up</p>) || (login && <p>{message}</p>)}</label>
 
-        <input type='text' placeholder={pholder} required value={loginCred.contact} onChange={(e)=>setLoginCred(prev=>({...prev, contact: e.target.value}))} />
+        {!login && <input type='text' placeholder="phone/email" required value={loginCred.contact} onChange={(e)=>setLoginCred(prev=>({...prev, contact: e.target.value}))} />}
 
-        {!login && <input type='text' required placeholder='username' value={loginCred.userName} onChange={(e)=>setLoginCred(prev=>({...prev, userName: e.target.value}))} />}
+        <input type='text' required placeholder='username' value={loginCred.userName} onChange={(e)=>setLoginCred(prev=>({...prev, userName: e.target.value}))} />
 
         <input type='text' required placeholder='password' value={loginCred.password} onChange={(e)=>setLoginCred(prev=>({...prev, password: e.target.value}))} />
 

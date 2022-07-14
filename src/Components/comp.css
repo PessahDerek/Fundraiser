@@ -12,6 +12,7 @@
 .top {
     width: 100%;
     height: 4em;
+    line-height: 4em;
     display: flex;
     justify-content: space-between;
     background-color: #3F88C5 !important;
@@ -19,6 +20,9 @@
     position: sticky;
     top: 0;
     z-index: 1500;
+}
+.top * {
+    color: white;
 }
 .navBar .top div {
     width: 40%;
@@ -35,11 +39,11 @@
 .navBar button:hover {
     border-bottom: 2px solid white;
 }
-.navBar h2 {
+.top h2 {
     font-size: 3vmax;
     margin-left: 2%;
 }
-.navBar h1 {
+.top h1 {
     width: 80%;
     font-size: 5vmax;
     margin-left: 2%;
@@ -81,7 +85,8 @@
 label p{
     color: white;
 }
-input {
+.loginForm input {
+    width: 70%;
     height: 2em;
     background-color: white;
     width: 70%;
@@ -92,7 +97,60 @@ input {
     text-align: center;
     border-radius: 10px;
 }
-input:focus {
+.loginForm input:focus {
     outline: 3px solid #3F88C5;
 }
 
+/** styling for fundraiser creation */
+.createForm {
+    width: 50vw;
+    height: fit-content;
+    margin-top: 5em;
+    display: grid;
+    grid-auto-flow: row;
+    text-align: center;
+    align-content: center;
+    margin-left: 25vw;
+    row-gap: 4%;
+    grid-auto-rows:max-content;
+}
+.createForm * {
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.13);
+}
+.createForm input {
+    border: none;
+    background-color: #ffffff;
+    outline: none;
+    width: 20em;
+    height: 2em;
+    text-align: center;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.createForm select {
+    width: 20em;
+    height: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    text-align: center;
+    border: none;
+    outline: transparent;
+    border-radius: 10px;
+}
+.createForm option {
+    background-color: white;
+    outline: none;
+    border: none;
+}
+.createForm textarea {
+    width: 16em;
+    height: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    outline: transparent;
+    padding: 2em;
+    border-radius: 10px;
+}
