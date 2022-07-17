@@ -57,7 +57,7 @@ routes.post('/loginacc', async(req, res)=>{
         try {
             if (req.body.userName === exists.userData.userName && req.body.password === exists.userData.password){
                 console.log("success");
-                res.send({message: "Successful", userId: exists.userData._id})
+                res.send({message: "Successful", userKeys: {userId: exists.userData._id, raiserKey: exists.userData.fundRaiserKey, inviteds: exists.userData.keyForInvited}})
             } else {
                 console.log("Check Username or Password");
                 res.send(false)
@@ -89,8 +89,27 @@ routes.post('/createraiser', async(req, res)=>{
     console.log(raiserId);
     // add key to list
     const userRaisers = await fundraisers.updateOne({_id: user.fundRaiserKey}, {$addToSet: {fundraiser: raiserId}})
-        .then((res)=>console.log(res))
+        .then((res)=>console.log("this is " , res))
         .catch(err=>console.log(err));
+})
+
+routes.post('/getraisers', async(req, res)=>{
+    var raisers = [];
+    try {
+        var x = await fundraisers.findOne({_id: req.body.raiserKey})
+        .then((resp)=>{
+            console.log(resp)
+            for (var i = 0; i < resp.fundraiser.length; i++){
+                functions.fetchRaiser(resp.fundraiser[i])
+                .then(resp=>raisers.push(resp))
+            }
+        })
+        console.log(x)
+        console.log(raisers)
+    } catch (error) {
+        
+    }
+    
 })
 
 module.exports = routes;

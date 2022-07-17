@@ -1,5 +1,7 @@
 
 const userModel = require('../models/userModel');
+const AllRaisers = require('../models/AllRaisers');
+const AllRaisersSchema = require('../models/AllRaisers');
 
 // check user doesn't exist 
 const checkUser = async(data, signIn=false) =>{
@@ -30,4 +32,13 @@ const screenRequest = async(request) =>{
     
 }
 
-module.exports = {checkUser};
+const fetchRaiser = async(id)=>{
+    let raiser;
+    try {
+        raiser = await AllRaisersSchema.findOne({_id: id});
+        return raiser;
+    }catch(error){
+        return error;
+    }
+}
+module.exports = {checkUser, getUser, fetchRaiser};
