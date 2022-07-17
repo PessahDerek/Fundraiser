@@ -22,8 +22,10 @@ const LoginForm = (props) => {
                 var resp = await loginFunc(loginCred);
                 // login to home if successful
                 if(resp.message === "Successful"){
-                    localStorage.setItem("userId", resp.userId);
-                    navigate("/home", {state: {userId: resp.userId}});
+                    localStorage.setItem("userKeys", resp.userKeys.userId);
+                    localStorage.setItem("raiserKey", resp.userKeys.raiserKey);
+                    localStorage.setItem("inviteds", resp.userKeys.inviteds);
+                    navigate("/home", {state: {userId: resp.userKeys.userId}});
                 }else{
                     setMessage("Check Your Credentials")
                 }

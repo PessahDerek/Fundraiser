@@ -154,3 +154,34 @@ label p{
     padding: 2em;
     border-radius: 10px;
 }
+/** progress bar and active stats */
+.activeStats {
+    width: 90%;
+    height: 30vh;
+}
+.activeStats .myraisers {
+    width: 25vw;
+    height: 25vh;
+    margin: 2.5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.progress {
+    width: 10vmax;
+    height: 10vmax;
+    border-radius: 50%;
+    background-position: center;
+    display: flex;
+    transition: background-image 2s;
+}
+.progress div {
+    width: 8vmax;
+    height: 8vmax;
+    background-color: white;
+    border-radius: 50%;
+    margin: 1vmax;
+    display: flex;
+    justify-content: space-around;
+    line-height: 8vmax;
+}

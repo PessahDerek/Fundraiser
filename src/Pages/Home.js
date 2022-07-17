@@ -13,7 +13,7 @@ const Home = () => {
     // make sure there's userId
     let localCacheId = localStorage.getItem("userId");
     if (localCacheId === "" || localCacheId === null || typeof(localCacheId) === 'undefined'){
-      if (location.state.userId === null){
+      if (location.state.userKeys.userId === null){
         navigate("/loginsignup");
       }else{
         setUserId(location.state.userId);
